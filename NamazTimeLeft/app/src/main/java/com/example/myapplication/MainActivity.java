@@ -14,6 +14,14 @@ public class MainActivity extends AppCompatActivity{
     private TextView t2;
     private TextView t3;
 
+    private TextView t_Subah_sadiq;
+    private TextView t_Tulu_aaftab;
+    private TextView t_Zawal;
+    private TextView t_Asr_1;
+    private TextView t_Asr_2;
+    private TextView t_Magrib;
+    private TextView t_Isha;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +30,15 @@ public class MainActivity extends AppCompatActivity{
         t1 = (TextView) findViewById(R.id.t1);
         t2 = (TextView) findViewById(R.id.t2);
         t3 = (TextView) findViewById(R.id.t3);
+
+        t_Subah_sadiq = (TextView) findViewById(R.id.t_Subah_sadiq);
+        t_Tulu_aaftab = (TextView) findViewById(R.id.t_Tulu_aaftab);
+        t_Zawal       = (TextView) findViewById(R.id.t_Zawal);
+        t_Asr_1       = (TextView) findViewById(R.id.t_Asr_1);
+        t_Asr_2       = (TextView) findViewById(R.id.t_Asr_2);
+        t_Magrib      = (TextView) findViewById(R.id.t_Magrib);
+        t_Isha        = (TextView) findViewById(R.id.t_Isha);
+
 
         int    current_time = current_time_();  // 781
         String system_date  = current_date();  // 6-29
@@ -54,6 +71,15 @@ public class MainActivity extends AppCompatActivity{
         t1.setText("Namaz:  " + next_namaz_name_);
         t2.setText("Actual_time:  " + next_namez_actual_time);
         t3.setText("Time Left:  " + minutes_baqi_hen); //
+
+
+        t_Subah_sadiq.setText("Subah_sadiq:   " + results[3]);
+        t_Tulu_aaftab.setText("Tulu_aaftab:   " + results[4]);
+        t_Zawal.setText("Zawal            :   " + results[5]);
+        t_Asr_1.setText("Asr_1            :   " + results[6]);
+        t_Asr_2.setText("Asr_2            :   " + results[7]);
+        t_Magrib.setText("Magrib          :   " + results[8]);
+        t_Isha.setText("Isha              :   " + results[9]);
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -186,6 +212,14 @@ public class MainActivity extends AppCompatActivity{
         String next_namaz_name_;
         String next_namez_actual_time;
 
+        String Subah_sadiq;
+        String Tulu_aaftab;
+        String Zawal;
+        String Asr_1;
+        String Asr_2;
+        String Magrib;
+        String Isha;
+
         for (int row_number=0; row_number<366; row_number++){
             String row = ALL_DATA[row_number]; //8,31,04:54,06:12,12:32,16:01,17:04,18:53,20:10
             String[] arrayrow = row.split(",");
@@ -194,6 +228,16 @@ public class MainActivity extends AppCompatActivity{
                 int[] arrayrow_int = to_int(arrayrow);
                 for (int i=0; i<arrayrow_int.length; i++){
                     if (arrayrow_int[i] > current_time){
+
+                        Subah_sadiq = arrayrow[2];
+                        Tulu_aaftab = arrayrow[3];
+                        Zawal       = arrayrow[4];
+                        Asr_1       = arrayrow[5];
+                        Asr_2       = arrayrow[6];
+                        Magrib      = arrayrow[7];
+                        Isha        = arrayrow[8];
+
+
                         int next_namaz_time_in_minute = arrayrow_int[i]; // i-1 is lye kya taky asar k waqk par zohor ka end time batay
 
                         minutes_baqi_hen = next_namaz_time_in_minute - current_time;
@@ -206,7 +250,8 @@ public class MainActivity extends AppCompatActivity{
 //                        Log.e("========= current_time", Integer.toString(current_time));
 //                        Log.e("========= arrayrow_int[i]", Integer.toString(arrayrow_int[i]));
 
-                        String TO_RETURN = Integer.toString(minutes_baqi_hen) + "\n" + next_namaz_name_ + "\n" + next_namez_actual_time ;
+//                        String TO_RETURN = Integer.toString(minutes_baqi_hen) + "\n" + next_namaz_name_ + "\n" + next_namez_actual_time ;
+                        String TO_RETURN = Integer.toString(minutes_baqi_hen) + "\n" + next_namaz_name_ + "\n" + next_namez_actual_time + "\n" + Subah_sadiq + "\n" + Tulu_aaftab + "\n" + Zawal + "\n" + Asr_1 + "\n" + Asr_2 + "\n" + Magrib + "\n" + Isha;
                         return TO_RETURN;
                     }
                 }
