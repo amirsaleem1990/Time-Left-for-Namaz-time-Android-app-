@@ -31,9 +31,18 @@ public class MainActivity extends AppCompatActivity{
         String result = FOR_LOOP(ALL_DATA, system_date, current_time);
         String[] results = result.split("\n");
 
-        String minutes_baqi_hen       = results[0];
+
+//        String minutes_baqi_hen       = results[0];
         String next_namaz_name_       = results[1];
         String next_namez_actual_time = results[2];
+
+
+
+
+        int x = Integer.parseInt(results[0]);
+        int h = x/60;
+        int m = x % 60;
+        String minutes_baqi_hen       = ;
 
 
 
