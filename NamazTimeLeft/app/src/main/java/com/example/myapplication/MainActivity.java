@@ -32,23 +32,28 @@ public class MainActivity extends AppCompatActivity{
         String[] results = result.split("\n");
 
 
-//        String minutes_baqi_hen       = results[0];
-        String next_namaz_name_       = results[1];
-        String next_namez_actual_time = results[2];
-
-
-
-
         int x = Integer.parseInt(results[0]);
         int h = x/60;
         int m = x % 60;
-        String minutes_baqi_hen       = ;
+        String hh = Integer.toString(h);
+        String mm = Integer.toString(m);
+        String caution_ = "";
+        if (h < 10){
+            hh = "0" + hh;
+        }
+        if (m < 10){
+            mm = "0" + mm;
+            caution_ = "  !!!";
+        }
 
+        String minutes_baqi_hen       =  hh + ":" + mm + caution_;
 
+        String next_namaz_name_       = results[1];
+        String next_namez_actual_time = results[2];
 
-        t1.setText("Namaz: " + next_namaz_name_);
-        t2.setText("Actual_time: " + next_namez_actual_time);
-        t3.setText("Minutes Left: " + minutes_baqi_hen); //
+        t1.setText("Namaz:  " + next_namaz_name_);
+        t2.setText("Actual_time:  " + next_namez_actual_time);
+        t3.setText("Time Left:  " + minutes_baqi_hen); //
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
