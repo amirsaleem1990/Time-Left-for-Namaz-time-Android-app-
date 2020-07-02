@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,22 +49,21 @@ public class MainActivity extends AppCompatActivity{
         String result = FOR_LOOP(ALL_DATA, system_date, current_time);
         String[] results = result.split("\n");
 
+//        int x = Integer.parseInt(results[0]);
+//        int h = x/60;
+//        int m = x % 60;
+//        String hh = Integer.toString(h);
+//        String mm = Integer.toString(m);
+//        String caution_ = "";
+//        if (h < 10){
+//            hh = "0" + hh;
+//        }
+//        if ((m < 10) && (h == 0)){
+//            mm = "0" + mm;
+//            caution_ = "  !!!";
+//        }
 
-        int x = Integer.parseInt(results[0]);
-        int h = x/60;
-        int m = x % 60;
-        String hh = Integer.toString(h);
-        String mm = Integer.toString(m);
-        String caution_ = "";
-        if (h < 10){
-            hh = "0" + hh;
-        }
-        if (m < 10){
-            mm = "0" + mm;
-            caution_ = "  !!!";
-        }
-
-        String minutes_baqi_hen       =  hh + ":" + mm + caution_;
+        String minutes_baqi_hen       =  time_int_to_OK_time(results[0]);
 
         String next_namaz_name_       = results[1];
         String next_namez_actual_time = results[2];
@@ -73,13 +73,14 @@ public class MainActivity extends AppCompatActivity{
         t3.setText("Time Left:  " + minutes_baqi_hen); //
 
 
-        t_Subah_sadiq.setText("Subah_sadiq:   " + results[3]);
-        t_Tulu_aaftab.setText("Tulu_aaftab:   " + results[4]);
-        t_Zawal.setText("Zawal            :   " + results[5]);
-        t_Asr_1.setText("Asr_1            :   " + results[6]);
-        t_Asr_2.setText("Asr_2            :   " + results[7]);
-        t_Magrib.setText("Magrib          :   " + results[8]);
-        t_Isha.setText("Isha              :   " + results[9]);
+        t_Subah_sadiq.setText("Subah_sadiq ------: " + results[3] + " ---  " + time_int_to_OK_time(results[10]));
+        t_Tulu_aaftab.setText("Tulu_aaftab --------: " + results[4] + " --- " + time_int_to_OK_time(results[11]));
+        t_Zawal.setText(      "Zawal -----------------: " + results[5] + " --- " + time_int_to_OK_time(results[12]));
+        t_Asr_1.setText(      "Asr_1 ------------------: " + results[6] + " --- " + time_int_to_OK_time(results[13]));
+        t_Asr_2.setText(      "Asr_2 ------------------: " + results[7] + " --- " + time_int_to_OK_time(results[14]));
+        t_Magrib.setText(     "Magrib ----------------: " + results[8] + " --- " + time_int_to_OK_time(results[15]));
+        t_Isha.setText(       "Isha --------------------: " + results[9] + " --- " + time_int_to_OK_time(results[16]));
+
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -207,7 +208,8 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public String FOR_LOOP(String[] ALL_DATA, String system_date, int current_time){
-
+        String TO_RETURN="";
+//        current_time += 180; // q k mobile ka time actual sy 3 ghanty peechy tha
         int minutes_baqi_hen;
         String next_namaz_name_;
         String next_namez_actual_time;
@@ -220,13 +222,65 @@ public class MainActivity extends AppCompatActivity{
         String Magrib;
         String Isha;
 
+        String time_left_in_Subah_sadiq = "Time gone";
+        String time_left_in_Tulu_aaftab = "Time gone";
+        String time_left_in_Zawal = "Time gone";
+        String time_left_in_Asr_1 = "Time gone";
+        String time_left_in_Asr_2 = "Time gone";
+        String time_left_in_Magrib = "Time gone";
+        String time_left_in_Isha = "Time gone";
+
+        Log.d("================current time", Integer.toString(current_time));
+
         for (int row_number=0; row_number<366; row_number++){
+
             String row = ALL_DATA[row_number]; //8,31,04:54,06:12,12:32,16:01,17:04,18:53,20:10
             String[] arrayrow = row.split(",");
             String csv_date = arrayrow[0] + "-" + arrayrow[1];
             if (csv_date.equals(system_date)){
+                Log.d("================row", row);
                 int[] arrayrow_int = to_int(arrayrow);
+
+                int int_time_left_in_Subah_sadiq = arrayrow_int[0] - current_time;
+                int int_time_left_in_Tulu_aaftab = arrayrow_int[1] - current_time;
+                int int_time_left_in_Zawal = 	   arrayrow_int[2] - current_time;
+                int int_time_left_in_Asr_1 =       arrayrow_int[3] - current_time;
+                int int_time_left_in_Asr_2 =       arrayrow_int[4] - current_time;
+                int int_time_left_in_Magrib =      arrayrow_int[5] - current_time;
+                int int_time_left_in_Isha =        arrayrow_int[6] - current_time;
+
+
+                if (int_time_left_in_Subah_sadiq > 0){
+                    time_left_in_Subah_sadiq = Integer.toString(int_time_left_in_Subah_sadiq);
+                }
+                if (int_time_left_in_Tulu_aaftab > 0){
+                    time_left_in_Tulu_aaftab = Integer.toString(int_time_left_in_Tulu_aaftab);
+                }
+                if (int_time_left_in_Zawal > 0){
+                    time_left_in_Zawal = Integer.toString(int_time_left_in_Zawal);
+                }
+                if (int_time_left_in_Asr_1 > 0){
+                    time_left_in_Asr_1 = Integer.toString(int_time_left_in_Asr_1);
+                }
+                if (int_time_left_in_Asr_2 > 0){
+                    time_left_in_Asr_2 = Integer.toString(int_time_left_in_Asr_2);
+                }
+                if (int_time_left_in_Magrib > 0){
+                    time_left_in_Magrib = Integer.toString(int_time_left_in_Magrib);
+                }
+                if (int_time_left_in_Isha > 0){
+                    time_left_in_Isha = Integer.toString(int_time_left_in_Isha);
+                }
+
+//                Log.d("================time_left_in_Subah_sadiq",time_left_in_Subah_sadiq);
+//                Log.d("================time_left_in_Tulu_aaftab",time_left_in_Tulu_aaftab);
+//                Log.d("================time_left_in_Zawal",time_left_in_Zawal);
+//                Log.d("================time_left_in_Asr_1",time_left_in_Asr_1);
+//                Log.d("================time_left_in_Asr_2",time_left_in_Asr_2);
+//                Log.d("================time_left_in_Magrib",time_left_in_Magrib);
+//                Log.d("================time_left_in_Isha",time_left_in_Isha);
                 for (int i=0; i<arrayrow_int.length; i++){
+
                     if (arrayrow_int[i] > current_time){
 
                         Subah_sadiq = arrayrow[2];
@@ -236,7 +290,6 @@ public class MainActivity extends AppCompatActivity{
                         Asr_2       = arrayrow[6];
                         Magrib      = arrayrow[7];
                         Isha        = arrayrow[8];
-
 
                         int next_namaz_time_in_minute = arrayrow_int[i]; // i-1 is lye kya taky asar k waqk par zohor ka end time batay
 
@@ -251,12 +304,36 @@ public class MainActivity extends AppCompatActivity{
 //                        Log.e("========= arrayrow_int[i]", Integer.toString(arrayrow_int[i]));
 
 //                        String TO_RETURN = Integer.toString(minutes_baqi_hen) + "\n" + next_namaz_name_ + "\n" + next_namez_actual_time ;
-                        String TO_RETURN = Integer.toString(minutes_baqi_hen) + "\n" + next_namaz_name_ + "\n" + next_namez_actual_time + "\n" + Subah_sadiq + "\n" + Tulu_aaftab + "\n" + Zawal + "\n" + Asr_1 + "\n" + Asr_2 + "\n" + Magrib + "\n" + Isha;
+//                        TO_RETURN = Integer.toString(minutes_baqi_hen) + "\n" + next_namaz_name_ + "\n" + next_namez_actual_time + "\n" + Subah_sadiq + "\n" + Tulu_aaftab + "\n" + Zawal + "\n" + Asr_1 + "\n" + Asr_2 + "\n" + Magrib + "\n" + Isha;
+                        TO_RETURN = Integer.toString(minutes_baqi_hen) + "\n" + next_namaz_name_ + "\n" + next_namez_actual_time + "\n" + Subah_sadiq + "\n" + Tulu_aaftab + "\n" + Zawal + "\n" + Asr_1 + "\n" + Asr_2 + "\n" + Magrib + "\n" + Isha + "\n" + time_left_in_Subah_sadiq + "\n" + time_left_in_Tulu_aaftab + "\n" + time_left_in_Zawal + "\n" + time_left_in_Asr_1 + "\n" + time_left_in_Asr_2 + "\n" + time_left_in_Magrib + "\n" + time_left_in_Isha;
                         return TO_RETURN;
                     }
                 }
             }
         }
-        return "";
+        return TO_RETURN;
+    }
+
+    public String time_int_to_OK_time(String time_){
+        if (time_.equals("Time gone")){
+            return "Time gone";
+        }
+        int x = Integer.parseInt(time_);
+        int h = x/60;
+        int m = x % 60;
+        String hh = Integer.toString(h);
+        String mm = Integer.toString(m);
+        String caution_ = "";
+        if (h < 10){
+            hh = "0" + hh;
+
+        }
+        if (m < 10){
+            mm = "0" + mm;
+            if (h == 0) {
+                caution_ = "  !!!";
+            }
+        }
+        return hh + ":" + mm + caution_;
     }
 }
