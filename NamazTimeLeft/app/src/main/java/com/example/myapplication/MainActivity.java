@@ -47,40 +47,43 @@ public class MainActivity extends AppCompatActivity{
         String[] ALL_DATA = get_long_list();
 
         String result = FOR_LOOP(ALL_DATA, system_date, current_time);
-        String[] results = result.split("\n");
 
-//        int x = Integer.parseInt(results[0]);
-//        int h = x/60;
-//        int m = x % 60;
-//        String hh = Integer.toString(h);
-//        String mm = Integer.toString(m);
-//        String caution_ = "";
-//        if (h < 10){
-//            hh = "0" + hh;
-//        }
-//        if ((m < 10) && (h == 0)){
-//            mm = "0" + mm;
-//            caution_ = "  !!!";
-//        }
+        if (result.equals("")){
+            t1.setText("Aaaj ki aakhri namaz ka time bhi khatam ho gya");
+            t2.setText("Aaaj ki aakhri namaz ka time bhi khatam ho gya");
+            t3.setText("Aaaj ki aakhri namaz ka time bhi khatam ho gya"); //
 
-        String minutes_baqi_hen       =  time_int_to_OK_time(results[0]);
-
-        String next_namaz_name_       = results[1];
-        String next_namez_actual_time = results[2];
-
-        t1.setText("Namaz:  " + next_namaz_name_);
-        t2.setText("Actual_time:  " + next_namez_actual_time);
-        t3.setText("Time Left:  " + minutes_baqi_hen); //
+            t_Subah_sadiq.setText("Aaaj ki aakhri namaz ka time bhi khatam ho gya");
+            t_Tulu_aaftab.setText("Aaaj ki aakhri namaz ka time bhi khatam ho gya");
+            t_Zawal.setText(      "Aaaj ki aakhri namaz ka time bhi khatam ho gya");
+            t_Asr_1.setText(      "Aaaj ki aakhri namaz ka time bhi khatam ho gya");
+            t_Asr_2.setText(      "Aaaj ki aakhri namaz ka time bhi khatam ho gya");
+            t_Magrib.setText(     "Aaaj ki aakhri namaz ka time bhi khatam ho gya");
+            t_Isha.setText(       "Aaaj ki aakhri namaz ka time bhi khatam ho gya");
 
 
-        t_Subah_sadiq.setText("Subah_sadiq ------: " + results[3] + " ---  " + time_int_to_OK_time(results[10]));
-        t_Tulu_aaftab.setText("Tulu_aaftab --------: " + results[4] + " --- " + time_int_to_OK_time(results[11]));
-        t_Zawal.setText(      "Zawal -----------------: " + results[5] + " --- " + time_int_to_OK_time(results[12]));
-        t_Asr_1.setText(      "Asr_1 ------------------: " + results[6] + " --- " + time_int_to_OK_time(results[13]));
-        t_Asr_2.setText(      "Asr_2 ------------------: " + results[7] + " --- " + time_int_to_OK_time(results[14]));
-        t_Magrib.setText(     "Magrib ----------------: " + results[8] + " --- " + time_int_to_OK_time(results[15]));
-        t_Isha.setText(       "Isha --------------------: " + results[9] + " --- " + time_int_to_OK_time(results[16]));
+        }else{
+            String[] results = result.split("\n");
 
+            String minutes_baqi_hen       =  time_int_to_OK_time(results[0]);
+
+            String next_namaz_name_       = results[1];
+            String next_namez_actual_time = results[2];
+
+            t1.setText("Namaz:  " + next_namaz_name_);
+            t2.setText("Actual_time:  " + next_namez_actual_time);
+            t3.setText("Time Left:  " + minutes_baqi_hen); //
+
+
+            t_Subah_sadiq.setText("Subah_sadiq ------: " + results[3] + " ---  " + time_int_to_OK_time(results[10]));
+            t_Tulu_aaftab.setText("Tulu_aaftab --------: " + results[4] + " --- " + time_int_to_OK_time(results[11]));
+            t_Zawal.setText(      "Zawal -----------------: " + results[5] + " --- " + time_int_to_OK_time(results[12]));
+            t_Asr_1.setText(      "Asr_1 ------------------: " + results[6] + " --- " + time_int_to_OK_time(results[13]));
+            t_Asr_2.setText(      "Asr_2 ------------------: " + results[7] + " --- " + time_int_to_OK_time(results[14]));
+            t_Magrib.setText(     "Magrib ----------------: " + results[8] + " --- " + time_int_to_OK_time(results[15]));
+            t_Isha.setText(       "Isha --------------------: " + results[9] + " --- " + time_int_to_OK_time(results[16]));
+
+        }
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
