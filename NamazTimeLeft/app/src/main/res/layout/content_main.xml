@@ -7,11 +7,14 @@
     android:layout_centerInParent="false"
     android:layout_centerHorizontal="false"
     android:layout_centerVertical="false"
+    android:background="#BEC6CC"
     android:orientation="vertical"
     android:textAlignment="gravity"
+    android:visibility="visible"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     app:layout_collapseMode="none"
-    app:layout_insetEdge="none">
+    app:layout_insetEdge="none"
+    tools:visibility="visible">
 
     <!--    <fragment-->
     <!--        android:id="@+id/nav_host_fragment"-->
@@ -65,61 +68,67 @@
         android:inputType="textPersonName"
         android:visibility="invisible" />
 
-    <EditText
+    <TextView
         android:id="@+id/t_Subah_sadiq"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="t_Subah_sadiq"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-    <EditText
+    <TextView
         android:id="@+id/t_Tulu_aaftab"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:text="t_Tulu_aaftab"
+        android:textSize="18sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/t_Zawal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:text="t_Zawal"
+        android:textSize="18sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/t_Asr_1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:text="t_Asr"
+        android:textSize="18sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/t_Asr_2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:text="t_Asr_2"
+        android:textSize="18sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/t_Magrib"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:text="t_Magrib"
+        android:textSize="18sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/t_Isha"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:text="t_Isha"
+        android:textSize="18sp" />
 
 </LinearLayout>

@@ -67,14 +67,14 @@ public class MainActivity extends AppCompatActivity{
                 t2.setText("Actual_time:  " + next_namez_actual_time);
                 t3.setText("Time Left:  " + minutes_baqi_hen); //
             }
-
-            t_Subah_sadiq.setText("Subah_sadiq ------: " + results[3] + " ---  " + time_int_to_OK_time(results[10]));
-            t_Tulu_aaftab.setText("Tulu_aaftab --------: " + results[4] + " --- " + time_int_to_OK_time(results[11]));
-            t_Zawal.setText(      "Zawal -----------------: " + results[5] + " --- " + time_int_to_OK_time(results[12]));
-            t_Asr_1.setText(      "Asr_1 ------------------: " + results[6] + " --- " + time_int_to_OK_time(results[13]));
-            t_Asr_2.setText(      "Asr_2 ------------------: " + results[7] + " --- " + time_int_to_OK_time(results[14]));
-            t_Magrib.setText(     "Magrib ----------------: " + results[8] + " --- " + time_int_to_OK_time(results[15]));
-            t_Isha.setText(       "Isha --------------------: " + results[9] + " --- " + time_int_to_OK_time(results[16]));
+            String spaces_in_leading = "      ";
+            t_Subah_sadiq.setText(spaces_in_leading + "Subah_sadiq ------: " + results[3] + " ----  " + time_int_to_OK_time(results[10]));
+            t_Tulu_aaftab.setText(spaces_in_leading + "Tulu_aaftab --------: " + results[4] + " ---- " + time_int_to_OK_time(results[11]));
+            t_Zawal.setText(      spaces_in_leading + "Zawal -----------------: " + results[5] + " ---- " + time_int_to_OK_time(results[12]));
+            t_Asr_1.setText(      spaces_in_leading + "Asr_1 ------------------: " + results[6] + " ---- " + time_int_to_OK_time(results[13]));
+            t_Asr_2.setText(      spaces_in_leading + "Asr_2 ------------------: " + results[7] + " ---- " + time_int_to_OK_time(results[14]));
+            t_Magrib.setText(     spaces_in_leading + "Magrib ----------------: " + results[8] + " ---- " + time_int_to_OK_time(results[15]));
+            t_Isha.setText(       spaces_in_leading + "Isha --------------------: " + results[9] + " ---- " + time_int_to_OK_time(results[16]));
 
 //        }
     }
