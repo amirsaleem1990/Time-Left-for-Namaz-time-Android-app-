@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,35 +53,40 @@ public class MainActivity extends AppCompatActivity{
             }
         });
         int    current_time = current_time_();  // 781
+
         String system_date  = current_date();  // 6-29
 
         String[] ALL_DATA = get_long_list();
-        Boolean next_day = false;
+        String spaces_in_leading = "      ";
+        String[] results;
         String result = FOR_LOOP(ALL_DATA, system_date, current_time);
         int mins_till_next_day_start;
+        results = result.split("\n");
         if (result.equals("")){
-            next_day = true;
-            result =     FOR_LOOP(ALL_DATA, system_date, 1);
-            t1.setText("Aaj rat 12 bajy sy in namazo");
-            t2.setText("me itna time baqi he");
+            result = FOR_LOOP(ALL_DATA, system_date, 1);
             mins_till_next_day_start = 1440 - current_time;
-            t3.setText("12 bajny me " + String.valueOf(mins_till_next_day_start) + " mins baqi hen"); //
-        }
+            results = result.split("\n");
 
-            String[] results = result.split("\n");
+            t1.setText("آج كی نمازیں ختم");
+            t2.setText("كل كے اوقات");
+            t3.setText("");
 
+            t_Subah_sadiq.setText(spaces_in_leading + "Subah_sadiq ------: " + results[3] + " ----  " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[10]) + mins_till_next_day_start)));
+            t_Tulu_aaftab.setText(spaces_in_leading + "Tulu_aaftab --------: " + results[4] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[11]) + mins_till_next_day_start)));
+            t_Zawal.setText(      spaces_in_leading + "Zawal -----------------: " + results[5] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[12]) + mins_till_next_day_start)));
+            t_Asr_1.setText(      spaces_in_leading + "Asr_1 ------------------: " + results[6] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[13]) + mins_till_next_day_start)));
+            t_Asr_2.setText(      spaces_in_leading + "Asr_2 ------------------: " + results[7] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[14]) + mins_till_next_day_start)));
+            t_Magrib.setText(     spaces_in_leading + "Magrib ----------------: " + results[8] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[15]) + mins_till_next_day_start)));
+            t_Isha.setText(       spaces_in_leading + "Isha --------------------: " + results[9] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[16]) + mins_till_next_day_start)));
+
+        }else{
             String minutes_baqi_hen       =  time_int_to_OK_time(results[0]);
 
             String next_namaz_name_       = results[1];
             String next_namez_actual_time = results[2];
-            if (next_day == false){
-                t1.setText("Namaz:  " + next_namaz_name_);
-                t2.setText("Actual time:  " + next_namez_actual_time);
-                t3.setText("Time Left:  " + minutes_baqi_hen); //
-            }
-            String spaces_in_leading = "      ";
-
-//            t_Subah_sadiq.setBackgroundColor(Integer.parseInt("bdbdbd", 16)+0xFF000000);
+            t1.setText("Namaz:  " + next_namaz_name_);
+            t2.setText("Actual time:  " + next_namez_actual_time);
+            t3.setText("Time Left:  " + minutes_baqi_hen); //
 
             t_Subah_sadiq.setText(spaces_in_leading + "Subah_sadiq ------: " + results[3] + " ----  " + time_int_to_OK_time(results[10]));
             t_Tulu_aaftab.setText(spaces_in_leading + "Tulu_aaftab --------: " + results[4] + " ---- " + time_int_to_OK_time(results[11]));
@@ -89,8 +95,7 @@ public class MainActivity extends AppCompatActivity{
             t_Asr_2.setText(      spaces_in_leading + "Asr_2 ------------------: " + results[7] + " ---- " + time_int_to_OK_time(results[14]));
             t_Magrib.setText(     spaces_in_leading + "Magrib ----------------: " + results[8] + " ---- " + time_int_to_OK_time(results[15]));
             t_Isha.setText(       spaces_in_leading + "Isha --------------------: " + results[9] + " ---- " + time_int_to_OK_time(results[16]));
-
-//        }
+        }
     }
 
     @Override
@@ -204,6 +209,7 @@ public class MainActivity extends AppCompatActivity{
         if (m < 10){
             mm = "0" + mm;
             if (h == 0) {
+                t3.setBackgroundColor(Color.RED);
                 caution_ = "  !!!";
             }
         }
