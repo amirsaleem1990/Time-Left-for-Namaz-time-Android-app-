@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity{
     private TextView t_Magrib;
     private TextView t_Isha;
 
+    private Button btn_exit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,14 @@ public class MainActivity extends AppCompatActivity{
         t_Magrib      = (TextView) findViewById(R.id.t_Magrib);
         t_Isha        = (TextView) findViewById(R.id.t_Isha);
 
+        btn_exit = (Button) findViewById(R.id.btn_exit);
 
+        btn_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finishAffinity();
+            }
+        });
         int    current_time = current_time_();  // 781
         String system_date  = current_date();  // 6-29
 
@@ -64,10 +75,13 @@ public class MainActivity extends AppCompatActivity{
             String next_namez_actual_time = results[2];
             if (next_day == false){
                 t1.setText("Namaz:  " + next_namaz_name_);
-                t2.setText("Actual_time:  " + next_namez_actual_time);
+                t2.setText("Actual time:  " + next_namez_actual_time);
                 t3.setText("Time Left:  " + minutes_baqi_hen); //
             }
             String spaces_in_leading = "      ";
+
+//            t_Subah_sadiq.setBackgroundColor(Integer.parseInt("bdbdbd", 16)+0xFF000000);
+
             t_Subah_sadiq.setText(spaces_in_leading + "Subah_sadiq ------: " + results[3] + " ----  " + time_int_to_OK_time(results[10]));
             t_Tulu_aaftab.setText(spaces_in_leading + "Tulu_aaftab --------: " + results[4] + " ---- " + time_int_to_OK_time(results[11]));
             t_Zawal.setText(      spaces_in_leading + "Zawal -----------------: " + results[5] + " ---- " + time_int_to_OK_time(results[12]));

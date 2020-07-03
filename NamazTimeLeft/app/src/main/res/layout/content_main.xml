@@ -77,6 +77,13 @@
         android:text="t_Subah_sadiq"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#FFFFFF" />
+
     <TextView
         android:id="@+id/t_Tulu_aaftab"
         android:layout_width="match_parent"
@@ -129,6 +136,13 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="t_Isha"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exit"
         android:textSize="18sp" />
 
 </LinearLayout>
