@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity{
 
     private Button btn_exit;
 
+    String spaces_in_leading = "      ";
+    String[] results;
+    String result;
+    int mins_till_next_day_start;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,57 +50,14 @@ public class MainActivity extends AppCompatActivity{
         t_Isha        = (TextView) findViewById(R.id.t_Isha);
 
         btn_exit = (Button) findViewById(R.id.btn_exit);
-
         btn_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finishAffinity();
             }
         });
-        int    current_time = current_time_();  // 781
-
-        String system_date  = current_date();  // 6-29
-
-        String[] ALL_DATA = get_long_list();
-        String spaces_in_leading = "      ";
-        String[] results;
-        String result = FOR_LOOP(ALL_DATA, system_date, current_time);
-        int mins_till_next_day_start;
-        results = result.split("\n");
-        if (result.equals("")){
-            result = FOR_LOOP(ALL_DATA, system_date, 1);
-            mins_till_next_day_start = 1440 - current_time;
-            results = result.split("\n");
-
-            t1.setText("آج كی نمازیں ختم");
-            t2.setText("كل كے اوقات");
-            t3.setText("");
-
-            t_Subah_sadiq.setText(spaces_in_leading + "Subah_sadiq ------: " + results[3] + " ----  " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[10]) + mins_till_next_day_start)));
-            t_Tulu_aaftab.setText(spaces_in_leading + "Tulu_aaftab --------: " + results[4] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[11]) + mins_till_next_day_start)));
-            t_Zawal.setText(      spaces_in_leading + "Zawal -----------------: " + results[5] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[12]) + mins_till_next_day_start)));
-            t_Asr_1.setText(      spaces_in_leading + "Asr_1 ------------------: " + results[6] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[13]) + mins_till_next_day_start)));
-            t_Asr_2.setText(      spaces_in_leading + "Asr_2 ------------------: " + results[7] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[14]) + mins_till_next_day_start)));
-            t_Magrib.setText(     spaces_in_leading + "Magrib ----------------: " + results[8] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[15]) + mins_till_next_day_start)));
-            t_Isha.setText(       spaces_in_leading + "Isha --------------------: " + results[9] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[16]) + mins_till_next_day_start)));
-
-        }else{
-            String minutes_baqi_hen       =  time_int_to_OK_time(results[0]);
-
-            String next_namaz_name_       = results[1];
-            String next_namez_actual_time = results[2];
-            t1.setText("Namaz:  " + next_namaz_name_);
-            t2.setText("Actual time:  " + next_namez_actual_time);
-            t3.setText("Time Left:  " + minutes_baqi_hen); //
-
-            t_Subah_sadiq.setText(spaces_in_leading + "Subah_sadiq ------: " + results[3] + " ----  " + time_int_to_OK_time(results[10]));
-            t_Tulu_aaftab.setText(spaces_in_leading + "Tulu_aaftab --------: " + results[4] + " ---- " + time_int_to_OK_time(results[11]));
-            t_Zawal.setText(      spaces_in_leading + "Zawal -----------------: " + results[5] + " ---- " + time_int_to_OK_time(results[12]));
-            t_Asr_1.setText(      spaces_in_leading + "Asr_1 ------------------: " + results[6] + " ---- " + time_int_to_OK_time(results[13]));
-            t_Asr_2.setText(      spaces_in_leading + "Asr_2 ------------------: " + results[7] + " ---- " + time_int_to_OK_time(results[14]));
-            t_Magrib.setText(     spaces_in_leading + "Magrib ----------------: " + results[8] + " ---- " + time_int_to_OK_time(results[15]));
-            t_Isha.setText(       spaces_in_leading + "Isha --------------------: " + results[9] + " ---- " + time_int_to_OK_time(results[16]));
-        }
+//        (new Handler()).postDelayed(this.DO_THE_JOB(), 500);
+        DO_THE_JOB();
     }
 
     @Override
@@ -117,7 +79,8 @@ public class MainActivity extends AppCompatActivity{
         return array_minutes;
     }
     public static int current_time_(){
-//        String current_time = java.time.LocalTime.now().toString();
+        int current_time_in_minutes = 0;
+
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
         Date date = new Date();
         String current_time = formatter.format(date).toString();
@@ -125,12 +88,7 @@ public class MainActivity extends AppCompatActivity{
         String current_hour    = current_time.split(":")[0].replaceFirst("^0+(?!$)", "");
         String current_minutes = current_time.split(":")[1].replaceFirst("^0+(?!$)", "");
 
-        int current_time_in_minutes = 0;
-
         current_time_in_minutes += Integer.parseInt(current_hour)*60;
-//        Log.d("========= current hour", current_hour);
-//        Log.d("========= current_minutes", current_minutes);
-//        Log.d("========= current_time", current_time);
         current_time_in_minutes += Integer.parseInt(current_minutes);
 
         return current_time_in_minutes;
@@ -274,4 +232,62 @@ public class MainActivity extends AppCompatActivity{
             return "Time gone";
         }
     }
+    public void next_day_data(String[] ALL_DATA, String system_date, int current_time){
+        mins_till_next_day_start = 1440 - current_time;
+
+        result = FOR_LOOP(ALL_DATA, system_date, 1);
+        results = result.split("\n");
+
+        t1.setText("آج كی نمازیں ختم");
+        t2.setText("كل كے اوقات");
+        t3.setText("");
+
+        t_Subah_sadiq.setText(spaces_in_leading + "Subah_sadiq ------: " + results[3] + " ----  " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[10]) + mins_till_next_day_start)));
+        t_Tulu_aaftab.setText(spaces_in_leading + "Tulu_aaftab --------: " + results[4] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[11]) + mins_till_next_day_start)));
+        t_Zawal.setText(      spaces_in_leading + "Zawal -----------------: " + results[5] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[12]) + mins_till_next_day_start)));
+        t_Asr_1.setText(      spaces_in_leading + "Asr_1 ------------------: " + results[6] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[13]) + mins_till_next_day_start)));
+        t_Asr_2.setText(      spaces_in_leading + "Asr_2 ------------------: " + results[7] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[14]) + mins_till_next_day_start)));
+        t_Magrib.setText(     spaces_in_leading + "Magrib ----------------: " + results[8] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[15]) + mins_till_next_day_start)));
+        t_Isha.setText(       spaces_in_leading + "Isha --------------------: " + results[9] + " ---- " + time_int_to_OK_time(Integer.toString(Integer.parseInt(results[16]) + mins_till_next_day_start)));
+    }
+    public void today_data(String[] results){
+        String minutes_baqi_hen       =  time_int_to_OK_time(results[0]);
+
+        String next_namaz_name_       = results[1];
+        String next_namez_actual_time = results[2];
+
+        t1.setText("Namaz:  " + next_namaz_name_);
+//        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+//        Date date = new Date();
+//        String current_time = formatter.format(date).toString();
+//        t1.setText(current_time);
+
+
+        t2.setText("Actual time:  " + next_namez_actual_time);
+        t3.setText("Time Left:  " + minutes_baqi_hen); //
+
+        t_Subah_sadiq.setText(spaces_in_leading + "Subah_sadiq ------: " + results[3] + " ----  " + time_int_to_OK_time(results[10]));
+        t_Tulu_aaftab.setText(spaces_in_leading + "Tulu_aaftab --------: " + results[4] + " ---- " + time_int_to_OK_time(results[11]));
+        t_Zawal.setText(      spaces_in_leading + "Zawal -----------------: " + results[5] + " ---- " + time_int_to_OK_time(results[12]));
+        t_Asr_1.setText(      spaces_in_leading + "Asr_1 ------------------: " + results[6] + " ---- " + time_int_to_OK_time(results[13]));
+        t_Asr_2.setText(      spaces_in_leading + "Asr_2 ------------------: " + results[7] + " ---- " + time_int_to_OK_time(results[14]));
+        t_Magrib.setText(     spaces_in_leading + "Magrib ----------------: " + results[8] + " ---- " + time_int_to_OK_time(results[15]));
+        t_Isha.setText(       spaces_in_leading + "Isha --------------------: " + results[9] + " ---- " + time_int_to_OK_time(results[16]));
+    }
+    public Runnable DO_THE_JOB(){
+        int    current_time = current_time_(); // 781
+        String system_date  = current_date();  // 6-29
+        String[] ALL_DATA = get_long_list();
+
+        result = FOR_LOOP(ALL_DATA, system_date, current_time);
+        results = result.split("\n");
+
+        if (result.equals("")){
+            next_day_data(ALL_DATA, system_date,current_time);
+        }else{
+            today_data(results);
+        }
+        return null;
+    }
+
 }
