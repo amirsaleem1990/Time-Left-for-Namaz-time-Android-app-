@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity{
     }
     public Runnable DO_THE_JOB(){
         int    current_time = current_time_(); // 781
-        current_time -= 50;
+        current_time -= 500;
         String system_date  = current_date();  // 6-29
         String[] ALL_DATA = get_long_list();
 
