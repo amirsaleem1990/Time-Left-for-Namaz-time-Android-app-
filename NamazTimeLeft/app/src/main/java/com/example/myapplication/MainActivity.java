@@ -13,6 +13,8 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity{
 
+    private TextView t_header;
+
     private TextView t1;
     private TextView t2;
     private TextView t3;
@@ -36,6 +38,9 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        t_header = (TextView) findViewById(R.id.t_header);
+        t_header.setText(spaces_in_leading + "Namaz                      Time          TimeLeft");
 
         t1 = (TextView) findViewById(R.id.t1);
         t2 = (TextView) findViewById(R.id.t2);
@@ -272,13 +277,13 @@ public class MainActivity extends AppCompatActivity{
         t2.setText("Actual time:  " + next_namez_actual_time);
         t3.setText("Time Left:  " + minutes_baqi_hen); //
 
-        t_Subah_sadiq.setText(spaces_in_leading + "Subah_sadiq ------: " + results[3] + " ----  " + time_int_to_OK_time(results[10]));
-        t_Tulu_aaftab.setText(spaces_in_leading + "Tulu_aaftab --------: " + results[4] + " ---- " + time_int_to_OK_time(results[11]));
-        t_Zawal.setText(      spaces_in_leading + "Zawal -----------------: " + results[5] + " ---- " + time_int_to_OK_time(results[12]));
-        t_Asr_1.setText(      spaces_in_leading + "Asr_1 ------------------: " + results[6] + " ---- " + time_int_to_OK_time(results[13]));
-        t_Asr_2.setText(      spaces_in_leading + "Asr_2 ------------------: " + results[7] + " ---- " + time_int_to_OK_time(results[14]));
-        t_Magrib.setText(     spaces_in_leading + "Magrib ----------------: " + results[8] + " ---- " + time_int_to_OK_time(results[15]));
-        t_Isha.setText(       spaces_in_leading + "Isha --------------------: " + results[9] + " ---- " + time_int_to_OK_time(results[16]));
+        t_Subah_sadiq.setText(spaces_in_leading + "Subah_sadiq ------: " + results[3] + " ------  " + time_int_to_OK_time(results[10]));
+        t_Tulu_aaftab.setText(spaces_in_leading + "Tulu_aaftab --------: " + results[4] + " ------ " + time_int_to_OK_time(results[11]));
+        t_Zawal.setText(      spaces_in_leading + "Zawal -----------------: " + results[5] + " ------ " + time_int_to_OK_time(results[12]));
+        t_Asr_1.setText(      spaces_in_leading + "Asr_1 ------------------: " + results[6] + " ------ " + time_int_to_OK_time(results[13]));
+        t_Asr_2.setText(      spaces_in_leading + "Asr_2 ------------------: " + results[7] + " ------ " + time_int_to_OK_time(results[14]));
+        t_Magrib.setText(     spaces_in_leading + "Magrib ----------------: " + results[8] + " ------ " + time_int_to_OK_time(results[15]));
+        t_Isha.setText(       spaces_in_leading + "Isha --------------------: " + results[9] + " ------ " + time_int_to_OK_time(results[16]));
     }
     public Runnable DO_THE_JOB(){
         int    current_time = current_time_(); // 781
