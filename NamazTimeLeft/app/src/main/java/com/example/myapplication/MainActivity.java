@@ -66,6 +66,13 @@ public class MainActivity extends AppCompatActivity{
         android.os.Process.killProcess(android.os.Process.myPid());
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
+
     public static int[] to_int(String[] x){
         int[] array_minutes = new int[7];
         for (int i=2; i<x.length; i++){
@@ -261,7 +268,6 @@ public class MainActivity extends AppCompatActivity{
 //        Date date = new Date();
 //        String current_time = formatter.format(date).toString();
 //        t1.setText(current_time);
-
 
         t2.setText("Actual time:  " + next_namez_actual_time);
         t3.setText("Time Left:  " + minutes_baqi_hen); //
