@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity{
         t_Magrib.setText(     spaces_in_leading + "Magrib --------------: " + results[8] + delim + time_int_to_OK_time(results[15]));
         t_Isha.setText(       spaces_in_leading + "Isha ------------------: " + results[9] + delim + time_int_to_OK_time(results[16]));
     }
-    public Runnable DO_THE_JOB(){
+    public Runnable DO_THE_JOB()    {
         int current_time = current_time_(); // 781
         String system_date  = current_date();  // 6-29
         String[] ALL_DATA = get_long_list();
