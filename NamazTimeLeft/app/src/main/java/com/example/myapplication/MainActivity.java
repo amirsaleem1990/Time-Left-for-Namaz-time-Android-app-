@@ -54,6 +54,17 @@ public class MainActivity extends AppCompatActivity{
         android.os.Process.killProcess(android.os.Process.myPid());
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
 
     public static int[] to_int(String[] x){
         int[] array_minutes = new int[7];
